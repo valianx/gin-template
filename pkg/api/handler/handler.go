@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/valianx/gin-template/pkg/domain/service"
 	"net/http"
@@ -14,12 +15,14 @@ func GetUserName(c *gin.Context) {
 		return
 	}
 	userName := service.GetUserName(id)
+
+	fmt.Println(userName)
 	if userName == "" {
 		c.JSON(http.StatusNotFound, gin.H{"message": "User Not found"})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"user name :": userName})
+	c.JSON(http.StatusOK, gin.H{"userName": userName})
 }
 
 func PostHandler(c *gin.Context) {

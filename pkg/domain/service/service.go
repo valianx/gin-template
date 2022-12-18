@@ -9,7 +9,8 @@ func GetUserName(id int) string {
 	db := database.DB
 	userRepo := &repository.UserRepositoryImpl{DB: db}
 	user, err := userRepo.FindById(id)
-	if err == nil || user == nil {
+
+	if err != nil || user == nil {
 		return ""
 	}
 	return user.Name
