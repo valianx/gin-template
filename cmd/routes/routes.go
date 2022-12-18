@@ -21,9 +21,9 @@ func SetupRoutes(port int) *gin.Engine {
 	r.Use(cors.New(config))
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
-	api := r.Group("/api")
+	api := r.Group("/user")
 	{
-		api.GET("/", handler.TestHandler)
+		api.GET("/:id", handler.GetUserName)
 		api.POST("/", handler.PostHandler)
 	}
 
